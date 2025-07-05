@@ -22,7 +22,7 @@ resource "azurerm_network_interface" "nic" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = data.azurerm_subnet.subnet_data[each.key].id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Dynamic"    
     public_ip_address_id = data.azurerm_public_ip.pip_data[each.key] != null ? data.azurerm_public_ip.pip_data[each.key].id : null
-  }
+  } 
 }

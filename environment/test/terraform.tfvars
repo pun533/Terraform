@@ -60,15 +60,24 @@ pip = {
       owner       = "devops"
     }
   }
-  # pip2 = {
-  #     name                = "test-pip-2"
-  #     location            = "East US"
-  #     resource_group_name = "test-rg-2"        
-  #     tags                = {
-  #         environment = "test"
-  #         owner       = "devops"
-  #     }
-  # }
+  pip2 = {
+    name                = "test-pip-2"
+    location            = "East US"
+    resource_group_name = "test-rg-1"
+    tags = {
+      environment = "test"
+      owner       = "devops"
+    }
+  }
+  pip3 = {
+    name                = "test-pip-3"
+    location            = "East US"
+    resource_group_name = "test-rg-1"
+    tags = {
+      environment = "test"
+      owner       = "devops"
+    }
+  }
 }
 
 
@@ -86,18 +95,18 @@ nic = {
       owner       = "devops"
     }
   }
-  # nic2 = {
-  #     name                = "test-nic-2"
-  #     location            = "East US"
-  #     resource_group_name = "test-rg-2"
-  #     subnet_name         = "test-subnet-1"
-  #     virtual_network_name = "test-vnet-2"
-  #     public_ip_name      = "test-pip-2"  # Optional, if you want to associate a public IP
-  #     tags                = {
-  #         environment = "test"
-  #         owner       = "devops"
-  #     }
-  # }
+  nic2 = {
+    name                 = "test-nic-2"
+    location             = "East US"
+    resource_group_name  = "test-rg-1"
+    subnet_name          = "test-subnet-1"
+    virtual_network_name = "test-vnet-1"
+    public_ip_name       = "test-pip-2" # Optional, if you want to associate a public IP
+    tags = {
+      environment = "test"
+      owner       = "devops"
+    }
+  }
 }
 
 nsg = {
@@ -135,6 +144,13 @@ ngs-nic-association = {
 
   }
 
+  nsg_nic2 = {
+    network_interface_name      = "test-nic-2"
+    network_security_group_name = "test-nsg-1"
+    resource_group_name         = "test-rg-1"
+
+  }
+
 }
 
 linux_vm = {
@@ -149,14 +165,46 @@ linux_vm = {
     }
   }
 
-  # vm2 = {
-  #     name                = "test-vm-2"
-  #     location            = "East US"
-  #     resource_group_name = "test-rg-2"
-  #     network_interface_name = "test-nic-2"  # This should match the NIC created above               
-  #     tags                = {
-  #         environment = "test"
-  #         owner       = "devops"
-  #     }
-  # }
+  vm2 = {
+    name                   = "test-vm-2"
+    location               = "East US"
+    resource_group_name    = "test-rg-1"
+    network_interface_name = "test-nic-2" # This should match the NIC created above               
+    tags = {
+      environment = "test"
+      owner       = "devops"
+    }
+  }
+}
+
+load_balancer = {
+  lb1 = {
+    name                           = "test-lb-1"
+    location                       = "East US"
+    resource_group_name            = "test-rg-1"
+    pip_name                       = "test-pip-3" # Optional, if you want to associate a public IP
+    frontend_ip_configuration_name = "test-fe-ip-config"
+    backend_address_pool_name      = "test-be-pool"
+    tags = {
+      environment = "test"
+      owner       = "devops"
+    }
+  }
+
+}
+
+lb-nic-association = {
+  lb_nic1 = {
+    network_interface_name                  = "test-nic-1"
+    load_balancer_name                      = "test-lb-1"
+    load_balancer_backend_address_pool_name = "test-be-pool"
+    resource_group_name                     = "test-rg-1"
+  }
+
+  lb_nic2 = {
+    network_interface_name                  = "test-nic-2"
+    load_balancer_name                      = "test-lb-1"
+    load_balancer_backend_address_pool_name = "test-be-pool"
+    resource_group_name                     = "test-rg-1"
+  }
 }

@@ -49,6 +49,19 @@ module "nsg" {
 module "nsg_nic_association" {
   source              = "../../module/nsg_nic_association"
   nsg_nic_association = var.ngs-nic-association
-  depends_on          = [module.nsg, module.network_interface] 
+  depends_on          = [module.nsg, module.network_interface]
+
+}
+
+module "load_balancer" {
+  source     = "../../module/load_balancer"
+  lb_name    = var.load_balancer
+  depends_on = [module.network_interface]
+}
+
+module "lb_nic_association" {
+  source             = "../../module/lb_nic_association"
+  lb_nic_association = var.lb-nic-association
+  depends_on         = [module.load_balancer, module.network_interface]
 
 }

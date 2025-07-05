@@ -8,6 +8,7 @@ variable "network_interface" {
     virtual_network_name = string
     public_ip_name = optional(string)
     tags     = optional(map(string))
+    load_balancer_backend_address_pools_ids = optional(list(string))
   }))   
 
 }
