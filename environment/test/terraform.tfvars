@@ -177,34 +177,37 @@ linux_vm = {
   }
 }
 
+
 load_balancer = {
   lb1 = {
     name                           = "test-lb-1"
     location                       = "East US"
     resource_group_name            = "test-rg-1"
     pip_name                       = "test-pip-3" # Optional, if you want to associate a public IP
-    frontend_ip_configuration_name = "test-fe-ip-config"
-    backend_address_pool_name      = "test-be-pool"
-    tags = {
-      environment = "test"
-      owner       = "devops"
-    }
-  }
+      }
 
+}
+
+lb_probe = {
+  probe1 = {
+    lb_name = "test-lb-1"  
+    resource_group_name = "test-rg-1"  
+    
+  }
 }
 
 lb-nic-association = {
   lb_nic1 = {
     network_interface_name                  = "test-nic-1"
     load_balancer_name                      = "test-lb-1"
-    load_balancer_backend_address_pool_name = "test-be-pool"
+    load_balancer_backend_address_pool_name = "BackEndAddressPool"
     resource_group_name                     = "test-rg-1"
   }
 
   lb_nic2 = {
     network_interface_name                  = "test-nic-2"
     load_balancer_name                      = "test-lb-1"
-    load_balancer_backend_address_pool_name = "test-be-pool"
+    load_balancer_backend_address_pool_name = "BackEndAddressPool"
     resource_group_name                     = "test-rg-1"
   }
 }

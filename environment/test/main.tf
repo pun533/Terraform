@@ -56,7 +56,13 @@ module "nsg_nic_association" {
 module "load_balancer" {
   source     = "../../module/load_balancer"
   lb_name    = var.load_balancer
-  depends_on = [module.network_interface]
+  depends_on = [module.public_ip]
+}
+
+module "lb_pool_probe" {
+  source     = "../../module/lb_pool_probe"
+  lb_name    = var.lb_probe
+  depends_on = [module.load_balancer]
 }
 
 module "lb_nic_association" {
